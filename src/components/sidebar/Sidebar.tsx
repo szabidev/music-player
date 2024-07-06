@@ -25,7 +25,7 @@ const Sidebar = () => {
   return (
     <div className="w-64 bg-gray-100 h-dvh cursor-pointer ">
       <h3 className="text-xs uppercase text-slate-500 font-semibold pt-5 pl-3">
-        <GiMusicSpell size={40} />
+        <GiMusicSpell size={40} color="rgb(217 70 239)" />
         <p className="my-1">Nice Tunes</p>
       </h3>
       <div className="mt-2 px-3">

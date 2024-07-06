@@ -6,7 +6,7 @@ interface SearchFormProps {
   onSearch?: (value: string) => void;
 }
 
-const SearchForm = ({ placeholder = "Search…", onSearch }: SearchFormProps) => {
+const SearchForm = ({ onSearch }: SearchFormProps) => {
   const [searchValue, setSearchValue] = useState<string>("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -30,15 +30,15 @@ const SearchForm = ({ placeholder = "Search…", onSearch }: SearchFormProps) =>
   };
 
   return (
-    <form className="relative w-2/4" onSubmit={handleSubmit}>
+    <form className="relative w-1/4" onSubmit={handleSubmit}>
       <label htmlFor="action-search" className="sr-only ">
         Search
       </label>
       <input
         id="action-search"
-        className="form-input pl-9 bg-gray-300 w-1/2  rounded-xl"
+        className="form-input pl-9 p-2 outline-none bg-gray-200 w-full rounded-2xl border focus:border-fuchsia-500 placeholder:text-slate-700"
         type="search"
-        placeholder={placeholder}
+        placeholder="Search..."
         onChange={handleChange}
         value={searchValue}
       />
