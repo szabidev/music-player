@@ -4,7 +4,7 @@ import { VscLibrary } from "react-icons/vsc";
 import { RiAlbumFill } from "react-icons/ri";
 import { LiaGuitarSolid } from "react-icons/lia";
 import { MdFavorite } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { routes } from "../../app-router/routes";
 
 const navLinks = [
@@ -15,15 +15,16 @@ const navLinks = [
 ];
 
 const Sidebar = () => {
-  const [isActive, setIsActive] = useState<string>("Library");
+  const [isActive, setIsActive] = useState<string>("/");
+  const navigate = useNavigate();
 
-  const handleClick = (name: string) => {
+  const handleClick = (route: string, name: string) => {
     setIsActive(name);
+    navigate(route);
   };
 
-  // ? Maybe change colors for nav items
   return (
-    <div className="w-64 bg-gray-100 h-dvh cursor-pointer ">
+    <div className="w-64 bg-gray-100 h-dvh cursor-pointer">
       <h3 className="text-xs uppercase text-slate-500 font-semibold pt-5 pl-3">
         <GiMusicSpell size={40} color="rgb(217 70 239)" />
         <p className="my-1">Nice Tunes</p>
@@ -36,14 +37,14 @@ const Sidebar = () => {
               className={`px-3 py-2 mb-0.5 last:mb-0 rounded-xl text-slate-600 ${
                 isActive === link.name ? "bg-gray-300" : ""
               }`}
-              onClick={() => handleClick(link.name)}
+              onClick={() => handleClick(link.route, link.name)}
             >
               <link.icon
                 size={20}
                 className="inline mr-2"
                 color={isActive === link.name ? "rgb(217 70 239)" : ""}
               />
-              <Link to={link.route}>{link.name}</Link>
+              {link.name}
             </li>
           ))}
         </ul>
