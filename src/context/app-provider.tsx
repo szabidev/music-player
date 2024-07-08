@@ -1,6 +1,12 @@
 "use client";
 
-import { createContext, useContext, useEffect, useState } from "react";
+import {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import { fetchBands } from "../api/bands.api";
 
 interface ContextProps {
@@ -19,11 +25,7 @@ const AppContext = createContext<ContextProps>({
   setAlbums: () => [],
 });
 
-export default function AppProvider({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function AppProvider({ children }: { children: ReactNode }) {
   const [music, setMusic] = useState([]);
   const [albums, setAlbums] = useState<any>([]);
 

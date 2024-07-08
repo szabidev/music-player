@@ -1,8 +1,22 @@
 import { useAppProvider } from "../../../context/app-provider";
 import { MdFavorite } from "react-icons/md";
+import { MdDeleteForever } from "react-icons/md";
+import Modal from "../../modal/Modal";
+import { useState } from "react";
+import DeleteSong from "../../delete-song/DeleteSong";
 
 const Library = () => {
   const { music, albums } = useAppProvider();
+  const [showModal, setShowModal] = useState<boolean>(false);
+
+  const closeModal = () => {
+    setShowModal(false);
+  };
+
+  const openModal = () => {
+    setShowModal(true);
+  };
+
   console.log(albums, "albums");
   console.log(music, "music");
   return (
@@ -13,9 +27,9 @@ const Library = () => {
           <tr>
             <th className="w-2/3 text-left">Name</th>
             <th className="text-center">Streams</th>
-            <th className="text-center">Listeners</th>
-            <th className="text-center">Saves</th>
             <th className="text-center">Length</th>
+            <th className="text-center">Saves</th>
+            <th className="text-center"></th>
           </tr>
         </thead>
         <tbody>
@@ -39,16 +53,23 @@ const Library = () => {
                       Math.floor(Math.random() * (10000000 - 10000 + 1)) + 10000
                     ).toLocaleString(undefined, { minimumFractionDigits: 0 })}
                   </td>
-                  <td className="text-center">listen</td>
+                  <td className="text-center">{song.length}</td>
                   <td>
                     <div
                       className="flex justify-center items-center"
-                      onClick={() => console.log("faorited")}
+                      onClick={() => console.log("favorited")}
                     >
                       <MdFavorite size={20} />
                     </div>
                   </td>
-                  <td className="text-center">{song.length}</td>
+                  <td className="text-center">
+                    <MdDeleteForever size={20} onClick={openModal} />
+                    {showModal && (
+                      <Modal onClose={closeModal}>
+                        <DeleteSong onClose={closeModal} />
+                      </Modal>
+                    )}
+                  </td>
                 </tr>
               ))
             )
