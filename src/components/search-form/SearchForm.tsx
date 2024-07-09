@@ -1,52 +1,60 @@
-"use client";
-import { useState } from "react";
-import { useAppProvider } from "../../context/app-provider";
-import { SongProps } from "../pages/Library/Library";
+import React, { useState } from "react";
 
 interface SearchFormProps {
   placeholder?: string;
-  onSearch?: (value: string) => void;
+  onSearch: (value: string) => void;
+  data: any[];
+  resetList?: () => void;
+  searchTerm: string;
+  setSearchTerm: (value: string) => void;
+  searchKey: string;
 }
 
-const SearchForm = ({ onSearch }: SearchFormProps) => {
-  const { songs } = useAppProvider();
-  const [searchTerm, setSearchTerm] = useState<string>("");
+const SearchForm = ({
+  onSearch,
+  data,
+  resetList,
+  searchTerm,
+  setSearchTerm,
+  searchKey,
+}: SearchFormProps) => {
   const [suggestions, setSuggestions] = useState<any[]>([]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
-
     setSearchTerm(value);
 
     if (value.length > 0) {
-      const filteredSuggestions = songs.filter((suggestion: any) => {
-        console.log(suggestion, "suggestion");
-        return suggestion.title.toLowerCase().includes(value.toLowerCase());
-      });
-
-      console.log(filteredSuggestions, "filteredSuggestions");
+      const filteredSuggestions = data.filter((item: any) =>
+        searchKey
+          .split(".")
+          .reduce((acc, key) => acc && acc[key], item)
+          .toLowerCase()
+          .includes(value.toLowerCase())
+      );
       setSuggestions(
         filteredSuggestions.length > 0
           ? filteredSuggestions
-          : ["No matches found"]
+          : [{ [searchKey]: "No matches found" }]
       );
     } else {
       setSuggestions([]);
+      if (resetList) {
+        resetList();
+      }
     }
   };
+  console.log(searchTerm, "searchTerm");
 
-  const handleSuggestion = (value: string) => {
-    setSearchTerm(value);
-    console.log(value, "value");
-    setSuggestions([]);
-    if (onSearch) {
-      onSearch(value);
-    }
+  const handleSelectSuggestion = (value: string) => {
+    setSearchTerm(value); // Update the searchTerm state
+    setSuggestions([]); // Clear suggestions
+    onSearch(value); // Trigger the onSearch callback in the parent component
   };
 
   return (
     <div className="relative w-full">
-      <label htmlFor="action-search" className="sr-only ">
+      <label htmlFor="action-search" className="sr-only">
         Search
       </label>
       <input
@@ -59,14 +67,21 @@ const SearchForm = ({ onSearch }: SearchFormProps) => {
       />
       {suggestions.length > 0 && (
         <ul className="absolute w-full top-[100%] left-0 right-0 list-none rounded-2xl border border-fuchsia-400">
-          {suggestions.map((suggestion) => (
+          {suggestions.map((suggestion, index) => (
             <li
+              key={index}
               className="cursor-pointer text-slate-600 bg-gray-100 hover:bg-fuchsia-300 p-2 first:rounded-t-2xl last:rounded-b-2xl transition ease-in duration-200"
-              key={suggestion._id}
-              onClick={() => handleSuggestion(suggestion.title)}
-              // value={suggestion.title}
+              onClick={() =>
+                handleSelectSuggestion(
+                  searchKey
+                    .split(".")
+                    .reduce((acc, key) => acc && acc[key], suggestion)
+                )
+              }
             >
-              {suggestion.title}
+              {searchKey
+                .split(".")
+                .reduce((acc, key) => acc && acc[key], suggestion)}
             </li>
           ))}
         </ul>

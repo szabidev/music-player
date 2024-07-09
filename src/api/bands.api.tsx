@@ -11,16 +11,3 @@ export async function fetchBands(): Promise<Response> {
   console.log(response, "response");
   return response;
 }
-
-export async function fetchBand(query: string): Promise<Response> {
-  const url = new URL(`/bands?query=${encodeURIComponent(query)}`, API_URL);
-  console.log(url, "url");
-  const response = await fetch(url.toString(), {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-
-  return response;
-}

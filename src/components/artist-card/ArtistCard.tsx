@@ -52,7 +52,7 @@ const ArtistCard = ({ artist }: { artist: Artist }) => {
               </div>
               {activeAlbum[album._id] && (
                 <div className="w-[90%] mt-4 mx-auto border-t border-t-fuchsia-300 ">
-                  {album.songs.map((song) => (
+                  {album.songs.map((song: any) => (
                     <div className={`flex justify-between items-center py-2 `}>
                       <p className="text-slate-600">{song.title}</p>
                       <p className="text-slate-600">{song.length}</p>

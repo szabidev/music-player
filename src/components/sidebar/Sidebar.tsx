@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { GiMusicSpell } from "react-icons/gi";
 import { VscLibrary } from "react-icons/vsc";
-import { RiAlbumFill } from "react-icons/ri";
 import { LiaGuitarSolid } from "react-icons/lia";
 import { MdFavorite } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
@@ -9,7 +8,6 @@ import { routes } from "../../app-router/routes";
 
 const navLinks = [
   { name: "Library", icon: VscLibrary, route: routes.LIBRARY },
-  { name: "Albums", icon: RiAlbumFill, route: routes.ALBUMS },
   { name: "Artists", icon: LiaGuitarSolid, route: routes.ARTISTS },
   { name: "Favorites", icon: MdFavorite, route: routes.FAVORITES },
 ];
