@@ -13,11 +13,11 @@ const navLinks = [
 ];
 
 const Sidebar = () => {
-  const [isActive, setIsActive] = useState<string>("/");
+  const [activeRoute, setActiveRoute] = useState<string>(routes.LIBRARY);
   const navigate = useNavigate();
 
-  const handleClick = (route: string, name: string) => {
-    setIsActive(name);
+  const handleClick = (route: string) => {
+    setActiveRoute(route);
     navigate(route);
   };
 
@@ -33,14 +33,14 @@ const Sidebar = () => {
             <li
               key={link.name}
               className={`px-3 py-2 mb-0.5 last:mb-0 rounded-xl text-slate-600 ${
-                isActive === link.name ? "bg-gray-300" : ""
+                activeRoute === link.route ? "bg-gray-300" : ""
               }`}
-              onClick={() => handleClick(link.route, link.name)}
+              onClick={() => handleClick(link.route)}
             >
               <link.icon
                 size={20}
                 className="inline mr-2"
-                color={isActive === link.name ? "rgb(217 70 239)" : ""}
+                color={activeRoute === link.route ? "rgb(217 70 239)" : ""}
               />
               {link.name}
             </li>
