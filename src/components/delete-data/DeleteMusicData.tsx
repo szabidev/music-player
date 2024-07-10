@@ -1,6 +1,12 @@
-import React from "react";
-
-const DeleteSong = ({ onClose }: { onClose: () => void }) => {
+const DeleteMusicData = ({
+  onClose,
+  data,
+  deleteData,
+}: {
+  onClose: () => void;
+  data: string;
+  deleteData?: any;
+}) => {
   return (
     <div className="w-full py-2 bg-gray-100 cursor-default pointer-events-auto relative rounded-xl mx-auto max-w-sm">
       <button
@@ -32,7 +38,7 @@ const DeleteSong = ({ onClose }: { onClose: () => void }) => {
             className="text-xl font-bold tracking-tight"
             id="page-action.heading"
           >
-            Delete John Doe
+            Delete {data}
           </h2>
 
           <p className="text-gray-500">
@@ -61,6 +67,7 @@ const DeleteSong = ({ onClose }: { onClose: () => void }) => {
 
             <button
               type="submit"
+              onClick={deleteData}
               className="inline-flex items-center justify-center py-1 gap-1 font-medium rounded-lg border transition-colors outline-none focus:ring-offset-2 focus:ring-2 focus:ring-inset dark:focus:ring-offset-0 min-h-[2.25rem] px-4 text-sm text-white shadow focus:ring-white border-transparent bg-fuchsia-500 hover:bg-fuchsia-400 focus:bg-fuchsia-700 focus:ring-offset-fuchsia-700"
             >
               <span className="flex items-center gap-1">
@@ -74,4 +81,4 @@ const DeleteSong = ({ onClose }: { onClose: () => void }) => {
   );
 };
 
-export default DeleteSong;
+export default DeleteMusicData;

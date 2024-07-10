@@ -3,9 +3,10 @@ import { useAppProvider } from "../../../context/app-provider";
 
 import Modal from "../../modal/Modal";
 import SearchForm from "../../search-form/SearchForm";
-import DeleteSong from "../../delete-song/DeleteSong";
+
 import { MdFavorite, MdDeleteForever } from "react-icons/md";
 import { CiHeart, CiEdit } from "react-icons/ci";
+import DeleteMusicData from "../../delete-data/DeleteMusicData";
 
 interface SongLibrary {
   _id: string;
@@ -19,14 +20,12 @@ const Library = () => {
   const { songLibrary, favorites, setFavorites } = useAppProvider();
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [searchResults, setSearchResults] = useState<SongLibrary[]>([]);
-  const [showModal, setShowModal] = useState<boolean>(false);
+  const [activeModalId, setActiveModalId] = useState<string | null>(null);
 
   const renderSongs = searchTerm === "" ? songLibrary : searchResults;
 
   // Todo fix rerendering on suggestion select
   const handleSearch = (value: string) => {
-    // setSearchTerm(value.trim());
-
     if (value.trim() === "") {
       setSearchResults([]);
     } else {
@@ -42,8 +41,8 @@ const Library = () => {
     setSearchResults([]);
   };
 
-  const closeModal = () => setShowModal(false);
-  const openModal = () => setShowModal(true);
+  const openModal = (songId: string) => setActiveModalId(songId);
+  const closeModal = () => setActiveModalId(null);
 
   const toggleFavorite = (song: SongLibrary) => {
     setFavorites((currentFavorites: any) => {
@@ -126,7 +125,7 @@ const Library = () => {
                     </button>
                   </td>
                   <td className="text-center">
-                    <button onClick={openModal}>
+                    <button onClick={() => openModal(song._id)}>
                       <CiEdit
                         size={20}
                         className="text-fuchsia-500 cursor-pointer"
@@ -134,12 +133,20 @@ const Library = () => {
                     </button>
                   </td>
                   <td className="text-center">
-                    <button onClick={openModal}>
+                    <button onClick={() => openModal(song._id)}>
                       <MdDeleteForever
                         size={20}
                         className="text-slate-500 cursor-pointer"
                       />
                     </button>
+                    {activeModalId === song._id && (
+                      <Modal onClose={closeModal}>
+                        <DeleteMusicData
+                          onClose={closeModal}
+                          data={song.title}
+                        />
+                      </Modal>
+                    )}
                   </td>
                 </tr>
               ))
@@ -147,11 +154,6 @@ const Library = () => {
           </tbody>
         </table>
       </div>
-      {showModal && (
-        <Modal onClose={closeModal}>
-          <DeleteSong onClose={closeModal} />
-        </Modal>
-      )}
     </div>
   );
 };

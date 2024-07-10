@@ -7,7 +7,7 @@ import {
   useEffect,
   useState,
 } from "react";
-import { fetchBands } from "../api/bands.api";
+import { deleteBand, fetchBands } from "../api/bands.api";
 
 interface ContextProps {
   music: any;
@@ -24,6 +24,7 @@ interface ContextProps {
 
   favorites: any;
   setFavorites: any;
+  deleteBand: (bandId: string) => void;
 }
 
 const AppContext = createContext<ContextProps>({
@@ -41,8 +42,36 @@ const AppContext = createContext<ContextProps>({
 
   favorites: [],
   setFavorites: () => [],
+
+  deleteBand: () => {},
 });
 
+export const handleBands = async (
+  setMusic: any,
+  setAlbums: any,
+  setSongs: any,
+  setSongLibrary: any
+) => {
+  const response = await fetchBands();
+  const data = await response.json();
+  const allAlbums = data.map((band: any) => band.albums).flat();
+  const allSongs = allAlbums.map((album: any) => album.songs).flat();
+
+  const newSongList = allSongs.map((song: any) => ({
+    artist: data.find((band: any) =>
+      band.albums.some((album: any) => album.songs.includes(song))
+    ).name,
+    album: allAlbums.find((album: any) => album.songs.includes(song)).title,
+    title: song.title,
+    length: song.length,
+    _id: song._id,
+  }));
+
+  setMusic(data);
+  setAlbums(allAlbums);
+  setSongs(allSongs);
+  setSongLibrary(newSongList);
+};
 export default function AppProvider({ children }: { children: ReactNode }) {
   const [music, setMusic] = useState([]);
   const [albums, setAlbums] = useState<any>([]);
@@ -50,36 +79,33 @@ export default function AppProvider({ children }: { children: ReactNode }) {
   const [favorites, setFavorites] = useState<any>([]);
   const [songLibrary, setSongLibrary] = useState<any>([]);
 
-  const handleBands = async () => {
-    const response = await fetchBands();
-    const data = await response.json();
-    const allAlbums = data.map((band: any) => band.albums).flat();
-    const allSongs = allAlbums.map((album: any) => album.songs).flat();
-
-    const newSongList = allSongs.map((song: any) => ({
-      artist: data.find((band: any) =>
-        band.albums.some((album: any) => album.songs.includes(song))
-      ).name,
-      album: allAlbums.find((album: any) => album.songs.includes(song)).title,
-      title: song.title,
-      length: song.length,
-      _id: song._id,
-    }));
-
-    setMusic(data);
-    setAlbums(allAlbums);
-    setSongs(allSongs);
-    setSongLibrary(newSongList);
-  };
-
   console.log(music, "music");
   console.log(albums, "allAlbums");
   console.log(songs, "allSongs");
   console.log(songLibrary, "songList");
 
   useEffect(() => {
-    handleBands();
+    handleBands(setMusic, setAlbums, setSongs, setSongLibrary);
   }, []);
+
+  const handleDeleteBand = async (bandId: string) => {
+    try {
+      await deleteBand(bandId);
+      // After successful deletion, update the context state
+      setMusic((prevMusic) =>
+        prevMusic.filter((band: any) => band._id !== bandId)
+      );
+      setAlbums((prevAlbums: any) =>
+        prevAlbums.filter((album: any) => album.bandId !== bandId)
+      ); // Adjust as per your data structure
+      setSongs((prevSongs: any) =>
+        prevSongs.filter((song: any) => song.bandId !== bandId)
+      ); // Adjust as per your data structure
+      // You might need to update other relevant states here
+    } catch (error) {
+      console.error("Error deleting band:", error);
+    }
+  };
 
   return (
     <AppContext.Provider
@@ -94,6 +120,7 @@ export default function AppProvider({ children }: { children: ReactNode }) {
         setSongs,
         songLibrary,
         setSongLibrary,
+        deleteBand: handleDeleteBand,
       }}
     >
       {children}

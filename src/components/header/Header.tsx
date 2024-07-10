@@ -5,12 +5,12 @@ import UploadArtist from "../upload-artist/UploadArtist";
 
 const Header = () => {
   const [showArtistModal, setShowArtistModal] = useState<boolean>(false);
-  const [showSongModal, setShowSongModal] = useState<boolean>(false);
+  // const [showSongModal, setShowSongModal] = useState<boolean>(false);
 
   const closeArtistModal = () => setShowArtistModal(false);
   const openArtistModal = () => setShowArtistModal(true);
-  const closeSongModal = () => setShowSongModal(false);
-  const openSongModal = () => setShowSongModal(true);
+  // const closeSongModal = () => setShowSongModal(false);
+  // const openSongModal = () => setShowSongModal(true);
   return (
     <div className="w-full flex justify-end">
       {/* <SearchForm /> */}

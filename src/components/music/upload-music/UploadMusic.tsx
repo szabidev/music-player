@@ -1,7 +1,4 @@
-import { useState } from "react";
 import { FaPlus } from "react-icons/fa6";
-import Modal from "../../modal/Modal";
-import UploadArtist from "../../upload-artist/UploadArtist";
 
 const UploadMusic = ({ openArtistModal }: { openArtistModal: any }) => {
   return (
