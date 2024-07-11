@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { useAppProvider } from "../../../context/app-provider";
+import { useAppProvider } from "../../../../context/app-provider";
 
 import Modal from "../../modal/Modal";
 import SearchForm from "../../search-form/SearchForm";
 
 import { MdFavorite, MdDeleteForever } from "react-icons/md";
 import { CiHeart, CiEdit } from "react-icons/ci";
-import DeleteMusicData from "../../delete-data/DeleteMusicData";
+import DeleteMusicData from "../../../delete-data/DeleteMusicData";
 
 interface SongLibrary {
   _id: string;

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Modal from "../modal/Modal";
-import UploadMusic from "../music/upload-music/UploadMusic";
-import UploadArtist from "../upload-artist/UploadArtist";
+import UploadMusic from "../../music/upload-music/UploadMusic";
+import UploadArtist from "../../upload-artist/UploadArtist";
 
 const Header = () => {
   const [showArtistModal, setShowArtistModal] = useState<boolean>(false);

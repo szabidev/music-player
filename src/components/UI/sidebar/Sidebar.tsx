@@ -4,7 +4,7 @@ import { VscLibrary } from "react-icons/vsc";
 import { LiaGuitarSolid } from "react-icons/lia";
 import { MdFavorite } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
-import { routes } from "../../app-router/routes";
+import { routes } from "../../../app-router/routes";
 
 const navLinks = [
   { name: "Library", icon: VscLibrary, route: routes.LIBRARY },

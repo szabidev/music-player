@@ -86,22 +86,20 @@ export default function AppProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     handleBands(setMusic, setAlbums, setSongs, setSongLibrary);
-  }, []);
+  }, [setMusic]);
 
   const handleDeleteBand = async (bandId: string) => {
     try {
       await deleteBand(bandId);
-      // After successful deletion, update the context state
       setMusic((prevMusic) =>
         prevMusic.filter((band: any) => band._id !== bandId)
       );
       setAlbums((prevAlbums: any) =>
         prevAlbums.filter((album: any) => album.bandId !== bandId)
-      ); // Adjust as per your data structure
+      );
       setSongs((prevSongs: any) =>
         prevSongs.filter((song: any) => song.bandId !== bandId)
-      ); // Adjust as per your data structure
-      // You might need to update other relevant states here
+      );
     } catch (error) {
       console.error("Error deleting band:", error);
     }

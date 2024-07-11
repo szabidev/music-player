@@ -2,11 +2,13 @@ import { Suspense, lazy } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import { routes } from "./routes";
-import Layout from "../components/layout/Layout";
+import Layout from "../components/UI/layout/Layout";
 
-const Library = lazy(() => import("../components/pages/Library/Library"));
-const Artists = lazy(() => import("../components/pages/Artists/Artists"));
-const Favorites = lazy(() => import("../components/pages/Favorites/Favorites"));
+const Library = lazy(() => import("../components/UI/pages/Library/Library"));
+const Artists = lazy(() => import("../components/UI/pages/Artists/Artists"));
+const Favorites = lazy(
+  () => import("../components/UI/pages/Favorites/Favorites")
+);
 
 export const AppRouter = () => {
   return (

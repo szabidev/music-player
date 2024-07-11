@@ -14,6 +14,9 @@ export async function fetchBands(): Promise<Response> {
 
 export async function createBand(band: any): Promise<Response> {
   const url = new URL("/bands", API_URL);
+  if (!band.albums) {
+    band.albums = [];
+  }
   const response = await fetch(url, {
     method: "POST",
     headers: {
@@ -30,10 +33,12 @@ export async function createBand(band: any): Promise<Response> {
 }
 
 export const updateBand = async (bandId: string, updatedBandData: any) => {
+  const url = new URL(`/bands/${bandId}`, API_URL);
   console.log(bandId, "bandId");
   console.log(updatedBandData, "updatedBandData");
+  console.log(url, "url");
   try {
-    const response = await fetch(`/bands/${bandId}`, {
+    const response = await fetch(url, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

@@ -3,7 +3,7 @@ const DeleteMusicData = ({
   data,
   deleteData,
 }: {
-  onClose: () => void;
+  onClose?: (event?: any) => void;
   data: string;
   deleteData?: any;
 }) => {

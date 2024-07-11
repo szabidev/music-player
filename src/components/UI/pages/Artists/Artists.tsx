@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { useAppProvider } from "../../../context/app-provider";
-import ArtistCard from "../../artist-card/ArtistCard";
+import { useAppProvider } from "../../../../context/app-provider";
+import ArtistCard from "../../../artist-card/ArtistCard";
 import SearchForm from "../../search-form/SearchForm";
 
 export interface Artist {
@@ -40,7 +40,7 @@ const Artists = () => {
   };
 
   const artistsToDisplay = searchResults.length > 0 ? searchResults : music;
-
+  console.log(music, "music");
   return (
     <div className="w-full">
       <div className="mx-auto w-2/4 mb-10">
