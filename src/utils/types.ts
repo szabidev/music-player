@@ -4,7 +4,24 @@ export interface LayoutProps {
   children: ReactNode;
 }
 
-export interface Music {}
+export interface Artist {
+  _id: string;
+  name: string;
+  albums: Album[];
+}
+
+export interface Album {
+  _id: string;
+  title: string;
+  songs: any;
+  description: string;
+}
+
+export interface Song {
+  title: string;
+  length: string;
+  _id?: string;
+}
 
 export interface SongInputProps {
   handleDynamicInputValueChange: (
@@ -16,4 +33,12 @@ export interface SongInputProps {
   song: { title: string; length: string };
   index: number;
   albumIndex: number;
+}
+
+export interface SongLibrary {
+  _id: string;
+  title: string;
+  artist: string;
+  album: string;
+  length: string;
 }

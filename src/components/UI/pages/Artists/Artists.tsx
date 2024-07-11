@@ -2,19 +2,7 @@ import { useState } from "react";
 import { useAppProvider } from "../../../../context/app-provider";
 import ArtistCard from "../../../artist-card/ArtistCard";
 import SearchForm from "../../search-form/SearchForm";
-
-export interface Artist {
-  _id: string;
-  name: string;
-  albums: Album[];
-}
-
-interface Album {
-  _id: string;
-  title: string;
-  songs: any;
-  description: string;
-}
+import { Artist } from "../../../../utils/types";
 
 const Artists = () => {
   const { music } = useAppProvider();

@@ -3,7 +3,7 @@ import { useState } from "react";
 import Modal from "../UI/modal/Modal";
 import DeleteMusicData from "../delete-data/DeleteMusicData";
 import { CiEdit } from "react-icons/ci";
-import { Artist } from "../UI/pages/Artists/Artists";
+import { Artist } from "../../utils/types";
 import { IoIosArrowDown } from "react-icons/io";
 import { MdDeleteForever } from "react-icons/md";
 import UploadArtist from "../upload-artist/UploadArtist";

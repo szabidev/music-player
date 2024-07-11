@@ -135,7 +135,7 @@ const UploadArtist = ({ onClose, initialData }: UploadArtistProps) => {
   };
 
   return (
-    <div className="w-1/3 py-2 bg-gray-100 cursor-default pointer-events-auto relative rounded-xl mx-auto shadow-lg border border-gray-200">
+    <div className="w-full sm:w-1/2 md:w-full py-2 bg-gray-100 cursor-default pointer-events-auto relative rounded-xl mx-auto shadow-lg border border-gray-200">
       <button
         tabIndex={-1}
         type="button"
@@ -158,7 +158,7 @@ const UploadArtist = ({ onClose, initialData }: UploadArtistProps) => {
         </svg>
         <span className="sr-only">Close</span>
       </button>
-      <div className="space-y-2 p-2">
+      <div className="space-y-2 p-2 w-full sm:w-full">
         <div className="p-4 space-y-2 text-center">
           <h2
             className="text-xl font-bold tracking-tight"
@@ -168,7 +168,7 @@ const UploadArtist = ({ onClose, initialData }: UploadArtistProps) => {
           </h2>
 
           <form onSubmit={handleSubmit}>
-            <div className="w-full">
+            <div className="w-full sm:w-full">
               <div className="w-full my-3">
                 <label
                   htmlFor="artist-name"
@@ -183,7 +183,7 @@ const UploadArtist = ({ onClose, initialData }: UploadArtistProps) => {
                   type="text"
                   id="artist-name"
                   placeholder="Name"
-                  className="py-2 px-3 mt-1 block w-full rounded-lg outline-none border-gray-300 shadow-sm focus:border-fuchsia-400 focus:ring focus:ring-fuchsia-400 focus:ring-opacity-50"
+                  className="py-2 px-3 mt-1 block w-full sm:w-full rounded-lg outline-none border-gray-300 shadow-sm focus:border-fuchsia-400 focus:ring focus:ring-fuchsia-400 focus:ring-opacity-50"
                 />
               </div>
               {/* ALBUM INPUT */}
