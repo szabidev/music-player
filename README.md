@@ -1,46 +1,58 @@
-# Getting Started with Create React App
+# Digital Music Library
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Welcome to the Digital Music Library project! This application allows users to visualize artists and their albums, delve into albums to view descriptions and lists of songs, and features an autocomplete component for efficient searching.
 
-## Available Scripts
+## Technology Stack
 
-In the project directory, you can run:
+- **Frontend**: React.js, TypeScript
+- **Backend**: Node.js
+- **Database**: MongoDB
+- **Styling**: TailwindCSS for responsive design
+- **Testing**: @testing-library/react for UI tests, Jest
 
-### `npm start`
+## Getting Started
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Prerequisites
 
-### `npm test`
+Before you begin, ensure you have the following installed:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Node.js
+- npm
+- MongoDB
 
-### `npm run build`
+### Installation
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Clone the repository:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```bash
+git clone https://github.com/yourusername/digital-music-library.git
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. Navigate to project:
+   `cd digital-music-library`
 
-### `npm run eject`
+3. Start the MongoDB service:
+   `sudo systemctl start mongod` for linux
+   `C:\mongodb\bin\mongod.exe --dbpath "pathToMongoDB\db\data"` for windows (replace with the correct path for MongoDB's data directory path)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+4. Start the deveopment server:
+   ``npm start`
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Features
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+> List Artists and Albums: Users can view all artists and their albums.
+> Album Details: Clicking on an album displays its description and song list.
+> CRUD Operations: Supports creating, reading, updating, and deleting artists and albums.
+> Search with Autocomplete: A search box with autocomplete functionality for quick and easy searching.
+> Library page: A quick list with songs.
+> Favorites: Songs can be favorited in the library, they are listed in the Favorites page
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### TODO
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+> Input Validation: Ensures all user input is validated to prevent SQL injection and XSS attacks.
+> HTTPS: Use HTTPS to encrypt data in transit.
+> Implement CRUD operations for single song
+> Implement unit and integration tests.
+> Apply types, switch any types.

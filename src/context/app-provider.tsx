@@ -24,7 +24,11 @@ interface ContextProps {
 
   favorites: any;
   setFavorites: any;
+
   deleteBand: (bandId: string) => void;
+
+  isSidebarOpen: boolean;
+  setIsSidebarOpen: any;
 }
 
 const AppContext = createContext<ContextProps>({
@@ -44,6 +48,9 @@ const AppContext = createContext<ContextProps>({
   setFavorites: () => [],
 
   deleteBand: () => {},
+
+  isSidebarOpen: true,
+  setIsSidebarOpen: () => {},
 });
 
 export const handleBands = async (
@@ -72,12 +79,14 @@ export const handleBands = async (
   setSongs(allSongs);
   setSongLibrary(newSongList);
 };
+
 export default function AppProvider({ children }: { children: ReactNode }) {
   const [music, setMusic] = useState([]);
   const [albums, setAlbums] = useState<any>([]);
   const [songs, setSongs] = useState<any>([]);
   const [favorites, setFavorites] = useState<any>([]);
   const [songLibrary, setSongLibrary] = useState<any>([]);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
   console.log(music, "music");
   console.log(albums, "allAlbums");
@@ -119,6 +128,8 @@ export default function AppProvider({ children }: { children: ReactNode }) {
         songLibrary,
         setSongLibrary,
         deleteBand: handleDeleteBand,
+        isSidebarOpen,
+        setIsSidebarOpen,
       }}
     >
       {children}

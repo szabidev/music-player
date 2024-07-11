@@ -5,6 +5,7 @@ import { LiaGuitarSolid } from "react-icons/lia";
 import { MdFavorite } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import { routes } from "../../../app-router/routes";
+import { useAppProvider } from "../../../context/app-provider";
 
 const navLinks = [
   { name: "Library", icon: VscLibrary, route: routes.LIBRARY },
@@ -13,18 +14,31 @@ const navLinks = [
 ];
 
 const Sidebar = () => {
+  const { isSidebarOpen, setIsSidebarOpen } = useAppProvider();
   const [activeRoute, setActiveRoute] = useState<string>(routes.LIBRARY);
+
   const navigate = useNavigate();
 
   const handleClick = (route: string) => {
     setActiveRoute(route);
     navigate(route);
+    setIsSidebarOpen(false);
   };
 
+  const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
+
   return (
-    <div className="w-64 bg-gray-100 h-dvh cursor-pointer">
-      <h3 className="text-xs uppercase text-slate-500 font-semibold pt-5 pl-3">
-        <GiMusicSpell size={40} color="rgb(217 70 239)" />
+    <div
+      className={`w-64 bg-gray-100 h-screen fixed cursor-pointer ${
+        isSidebarOpen ? "translate-x-0" : "-translate-x-full"
+      } transition-transform duration-300 ease-in-out`}
+    >
+      <h3 className="text-xs uppercase text-slate-500 font-semibold pt-4 pl-4">
+        <GiMusicSpell
+          size={40}
+          color="rgb(217 70 239)"
+          onClick={toggleSidebar}
+        />
         <p className="my-1">Nice Tunes</p>
       </h3>
       <div className="mt-2 px-3">
