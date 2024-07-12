@@ -27,7 +27,7 @@ Before you begin, ensure you have the following installed:
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/digital-music-library.git
+git clone https://github.com/szabidev/music-player.git
 ```
 
 2. Navigate to project:
