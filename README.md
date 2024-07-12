@@ -43,17 +43,17 @@ git clone https://github.com/yourusername/digital-music-library.git
 
 ### Features
 
-> List Artists and Albums: Users can view all artists and their albums.
-> Album Details: Clicking on an album displays its description and song list.
-> CRUD Operations: Supports creating, reading, updating, and deleting artists and albums.
-> Search with Autocomplete: A search box with autocomplete functionality for quick and easy searching.
-> Library page: A quick list with songs.
-> Favorites: Songs can be favorited in the library, they are listed in the Favorites page
+- List Artists and Albums: Users can view all artists and their albums.
+- Album Details: Clicking on an album displays its description and song list.
+- CRUD Operations: Supports creating, reading, updating, and deleting artists and albums.
+- Search with Autocomplete: A search box with autocomplete functionality for quick and easy searching.
+- Library page: A quick list with songs.
+- Favorites: Songs can be favorited in the library, they are listed in the Favorites page
 
 ### TODO
 
-> Input Validation: Ensures all user input is validated to prevent SQL injection and XSS attacks.
-> HTTPS: Use HTTPS to encrypt data in transit.
-> Implement CRUD operations for single song
-> Implement unit and integration tests.
-> Apply types, switch any types.
+- Input Validation: Ensures all user input is validated to prevent SQL injection and XSS attacks.
+- HTTPS: Use HTTPS to encrypt data in transit.
+- Implement CRUD operations for single song
+- Implement unit and integration tests.
+- Apply types, switch any types.
