@@ -15,12 +15,15 @@ const Header = () => {
 
   return (
     <div className="w-full flex justify-between items-center">
-      <GiMusicSpell
-        className="cursor-pointer"
-        size={40}
-        color="rgb(217 70 239)"
-        onClick={toggleSidebar}
-      />
+      <div>
+        <GiMusicSpell
+          className="cursor-pointer"
+          size={40}
+          color="rgb(217 70 239)"
+          onClick={toggleSidebar}
+        />
+        <h2 className="text-sm text-slate-600">Menu</h2>
+      </div>
       <UploadMusic openArtistModal={openArtistModal} />
       {showArtistModal && (
         <Modal onClose={closeArtistModal}>

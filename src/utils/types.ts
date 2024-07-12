@@ -17,10 +17,24 @@ export interface Album {
   description: string;
 }
 
+export interface BandData {
+  _id: string;
+  name: string;
+  albums: Album[];
+}
+
 export interface Song {
   title: string;
   length: string;
-  _id?: string;
+  _id: string;
+}
+
+export interface SongLibrary {
+  _id: string;
+  title: string;
+  artist: string;
+  album: string;
+  length: string;
 }
 
 export interface SongInputProps {

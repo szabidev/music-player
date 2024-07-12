@@ -25,6 +25,7 @@ export async function createBand(band: any): Promise<Response> {
     body: JSON.stringify(band),
   });
   console.log(response, "response");
+  console.log(band, "band");
   if (!response.ok) {
     throw new Error("Failed to add artist");
   }

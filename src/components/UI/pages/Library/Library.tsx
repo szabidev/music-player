@@ -7,14 +7,7 @@ import SearchForm from "../../search-form/SearchForm";
 import { MdFavorite, MdDeleteForever } from "react-icons/md";
 import { CiHeart, CiEdit } from "react-icons/ci";
 import DeleteMusicData from "../../../delete-data/DeleteMusicData";
-
-interface SongLibrary {
-  _id: string;
-  title: string;
-  artist: string;
-  album: string;
-  length: string;
-}
+import { SongLibrary } from "../../../../utils/types";
 
 const Library = () => {
   const { songLibrary, favorites, setFavorites } = useAppProvider();

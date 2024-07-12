@@ -86,12 +86,9 @@ export default function AppProvider({ children }: { children: ReactNode }) {
   const [songs, setSongs] = useState<any>([]);
   const [favorites, setFavorites] = useState<any>([]);
   const [songLibrary, setSongLibrary] = useState<any>([]);
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   console.log(music, "music");
-  console.log(albums, "allAlbums");
-  console.log(songs, "allSongs");
-  console.log(songLibrary, "songList");
 
   useEffect(() => {
     handleBands(setMusic, setAlbums, setSongs, setSongLibrary);

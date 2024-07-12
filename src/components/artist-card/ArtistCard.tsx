@@ -22,6 +22,7 @@ const ArtistCard = ({ artist }: { artist?: Artist }) => {
       [albumId]: !prevActiveAlbums[albumId],
     }));
   };
+  console.log(artist, "artist!!!!!!!!!!!");
 
   const openModal = (event: any) => {
     event.stopPropagation();
@@ -80,7 +81,7 @@ const ArtistCard = ({ artist }: { artist?: Artist }) => {
           )}
         </div>
         <div className="w-full px-2">
-          {artist?.albums.map((album, albumIndex) => (
+          {artist?.albums?.map((album, albumIndex) => (
             <div
               key={`${album._id}-${albumIndex}-${album.title}`}
               className="[&:not(:first-child)]:border-t border-t-fuchsia-300 py-3 my-4 w-full"
