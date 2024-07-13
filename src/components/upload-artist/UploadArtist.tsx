@@ -118,17 +118,15 @@ const UploadArtist = ({ onClose, initialData }: UploadArtistProps) => {
       let updatedArtist: any;
       if (initialData && initialData._id) {
         updatedArtist = await updateBand(initialData._id, bandData);
-        console.log(bandData, "bandData");
-        const artistToUpdate = await updatedArtist.json();
+        console.log(updatedArtist, "bandData");
         setMusic((prevMusic: any) =>
           prevMusic.map((artist: any) =>
-            artist._id === initialData._id ? artistToUpdate : artist
+            artist._id === initialData._id ? updatedArtist : artist
           )
         );
       } else {
         updatedArtist = await createBand(bandData);
-        const artist = await updatedArtist.json();
-        setMusic((prevMusic: any) => [...prevMusic, artist]);
+        setMusic((prevMusic: any) => [...prevMusic, updatedArtist]);
         console.log(updatedArtist, "updatedArtist");
       }
       onClose(event);
