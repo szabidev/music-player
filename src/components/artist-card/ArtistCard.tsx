@@ -2,11 +2,11 @@ import { useAppProvider } from "../../context/app-provider";
 import { useState } from "react";
 import Modal from "../UI/modal/Modal";
 import DeleteMusicData from "../delete-data/DeleteMusicData";
+import UploadArtist from "../music/upload-artist/UploadArtist";
 import { CiEdit } from "react-icons/ci";
 import { Artist } from "../../utils/types";
 import { IoIosArrowDown } from "react-icons/io";
 import { MdDeleteForever } from "react-icons/md";
-import UploadArtist from "../upload-artist/UploadArtist";
 
 const ArtistCard = ({ artist }: { artist?: Artist }) => {
   const { deleteBand } = useAppProvider();
@@ -22,7 +22,6 @@ const ArtistCard = ({ artist }: { artist?: Artist }) => {
       [albumId]: !prevActiveAlbums[albumId],
     }));
   };
-  console.log(artist, "artist!!!!!!!!!!!");
 
   const openModal = (event: any) => {
     event.stopPropagation();
@@ -43,7 +42,6 @@ const ArtistCard = ({ artist }: { artist?: Artist }) => {
     deleteBand(artist._id);
   };
 
-  console.log(artist, "artist");
   return (
     <div className="w-3/4 mx-auto bg-gray-100">
       <div className="border border-gray-200 p-4 rounded-lg  mb-12">

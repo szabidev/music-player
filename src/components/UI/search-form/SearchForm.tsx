@@ -44,12 +44,11 @@ const SearchForm = ({
       }
     }
   };
-  console.log(searchTerm, "searchTerm");
 
   const handleSelectSuggestion = (value: string) => {
-    setSearchTerm(value); // Update the searchTerm state
-    setSuggestions([]); // Clear suggestions
-    onSearch(value); // Trigger the onSearch callback in the parent component
+    setSearchTerm(value);
+    setSuggestions([]);
+    onSearch(value);
   };
 
   return (

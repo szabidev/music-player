@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import SongInput from "../song-input/SongInput";
 import { GoPlus } from "react-icons/go";
-import { createBand, updateBand } from "../../api/bands.api";
-import { useAppProvider } from "../../context/app-provider";
+import { createBand, updateBand } from "../../../api/bands.api";
+import { useAppProvider } from "../../../context/app-provider";
 import { MdDeleteForever } from "react-icons/md";
-import Modal from "../UI/modal/Modal";
-import DeleteMusicData from "../delete-data/DeleteMusicData";
+import Modal from "../../UI/modal/Modal";
+import DeleteMusicData from "../../delete-data/DeleteMusicData";
 
 interface AlbumData {
   title: string;
@@ -33,7 +33,6 @@ const UploadArtist = ({ onClose, initialData }: UploadArtistProps) => {
     ],
   });
   const [activeAlbumModal, setActiveAlbumModal] = useState<number | null>(null);
-  console.log(bandData, "bandData");
 
   const closeModal = () => {
     setActiveAlbumModal(null);
@@ -118,7 +117,6 @@ const UploadArtist = ({ onClose, initialData }: UploadArtistProps) => {
       let updatedArtist: any;
       if (initialData && initialData._id) {
         updatedArtist = await updateBand(initialData._id, bandData);
-        console.log(updatedArtist, "bandData");
         setMusic((prevMusic: any) =>
           prevMusic.map((artist: any) =>
             artist._id === initialData._id ? updatedArtist : artist
@@ -127,7 +125,6 @@ const UploadArtist = ({ onClose, initialData }: UploadArtistProps) => {
       } else {
         updatedArtist = await createBand(bandData);
         setMusic((prevMusic: any) => [...prevMusic, updatedArtist]);
-        console.log(updatedArtist, "updatedArtist");
       }
       onClose(event);
     } catch (error) {
@@ -136,7 +133,7 @@ const UploadArtist = ({ onClose, initialData }: UploadArtistProps) => {
   };
 
   return (
-    <div className="w-full sm:w-1/2 md:w-full py-2 bg-gray-100 cursor-default pointer-events-auto relative rounded-xl mx-auto shadow-lg border border-gray-200">
+    <div className="w-full sm:w-1/2 md:w-full  lg:w-2/3 xl-w-full py-2 bg-gray-100 cursor-default pointer-events-auto relative rounded-xl mx-auto shadow-lg border border-gray-200">
       <button
         tabIndex={-1}
         type="button"

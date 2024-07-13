@@ -34,6 +34,7 @@ export interface SongLibrary {
   title: string;
   artist: string;
   album: string;
+  artistId: string;
   length: string;
 }
 

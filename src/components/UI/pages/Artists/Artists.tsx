@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useAppProvider } from "../../../../context/app-provider";
+import { fetchBands } from "../../../../api/bands.api";
 import ArtistCard from "../../../artist-card/ArtistCard";
 import SearchForm from "../../search-form/SearchForm";
 import { Artist } from "../../../../utils/types";
-import { fetchBands } from "../../../../api/bands.api";
 
 const Artists = () => {
   const { music, setMusic } = useAppProvider();
@@ -39,8 +39,7 @@ const Artists = () => {
   };
 
   const artistsToDisplay = searchResults.length > 0 ? searchResults : music;
-  console.log(music, "music");
-  console.log(artistsToDisplay, "artistsToDisplay");
+
   return (
     <div className="w-full">
       <div className="mx-auto w-2/4 mb-10">
@@ -56,6 +55,11 @@ const Artists = () => {
       {artistsToDisplay.map((artist: Artist) => (
         <ArtistCard key={artist._id} artist={artist} />
       ))}
+      {!artistsToDisplay.length && (
+        <h2 className="text-center text-2xl text-slate-600">
+          No artists found
+        </h2>
+      )}
     </div>
   );
 };

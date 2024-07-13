@@ -1,6 +1,6 @@
+import AppProvider from "../../../context/app-provider";
 import Header from "../header/Header";
 import Sidebar from "../sidebar/Sidebar";
-import AppProvider from "../../../context/app-provider";
 import { LayoutProps } from "../../../utils/types";
 
 const Layout = ({ children }: LayoutProps) => {

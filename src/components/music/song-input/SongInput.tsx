@@ -1,5 +1,5 @@
 import { MdDeleteForever } from "react-icons/md";
-import { SongInputProps } from "../../utils/types";
+import { SongInputProps } from "../../../utils/types";
 
 const SongInput = ({
   handleDynamicInputValueChange,

@@ -1,9 +1,9 @@
 import { useState } from "react";
+import { useAppProvider } from "../../../context/app-provider";
 import Modal from "../modal/Modal";
 import UploadMusic from "../../music/upload-music/UploadMusic";
-import UploadArtist from "../../upload-artist/UploadArtist";
+import UploadArtist from "../../music/upload-artist/UploadArtist";
 import { GiMusicSpell } from "react-icons/gi";
-import { useAppProvider } from "../../../context/app-provider";
 
 const Header = () => {
   const [showArtistModal, setShowArtistModal] = useState<boolean>(false);

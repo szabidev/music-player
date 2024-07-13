@@ -2,7 +2,6 @@ import { useAppProvider } from "../../../../context/app-provider";
 
 const Favorites = () => {
   const { favorites, setFavorites } = useAppProvider();
-  console.log(favorites, "favorites");
 
   const clearFavorites = () => {
     setFavorites([]);

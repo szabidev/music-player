@@ -1,5 +1,3 @@
-"use client";
-
 import {
   createContext,
   ReactNode,
@@ -72,6 +70,9 @@ export const handleBands = async (
     title: song.title,
     length: song.length,
     _id: song._id,
+    artistId: data.find((band: any) =>
+      band.albums.some((album: any) => album.songs.includes(song))
+    )._id,
   }));
 
   setMusic(data);
@@ -87,8 +88,6 @@ export default function AppProvider({ children }: { children: ReactNode }) {
   const [favorites, setFavorites] = useState<any>([]);
   const [songLibrary, setSongLibrary] = useState<any>([]);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-
-  console.log(music, "music");
 
   useEffect(() => {
     handleBands(setMusic, setAlbums, setSongs, setSongLibrary);

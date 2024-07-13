@@ -1,5 +1,6 @@
 const API_URL = "http://localhost:8000";
 
+// Fetch all bands
 export async function fetchBands(): Promise<Response> {
   const url = new URL("/bands", API_URL);
   const response = await fetch(url, {
@@ -8,10 +9,10 @@ export async function fetchBands(): Promise<Response> {
       "Content-Type": "application/json",
     },
   });
-  console.log(response, "response");
   return response;
 }
 
+// Create a new band
 export async function createBand(band: any): Promise<Response> {
   const url = new URL("/bands", API_URL);
   if (!band.albums) {
@@ -24,8 +25,6 @@ export async function createBand(band: any): Promise<Response> {
     },
     body: JSON.stringify(band),
   });
-  console.log(response, "response");
-  console.log(band, "band");
   if (!response.ok) {
     throw new Error("Failed to add artist");
   }
@@ -33,11 +32,9 @@ export async function createBand(band: any): Promise<Response> {
   return response;
 }
 
+// Edit a band
 export const updateBand = async (bandId: string, updatedBandData: any) => {
   const url = new URL(`/bands/${bandId}`, API_URL);
-  console.log(bandId, "bandId");
-  console.log(updatedBandData, "updatedBandData");
-  console.log(url, "url");
   try {
     const response = await fetch(url, {
       method: "PUT",
@@ -57,9 +54,9 @@ export const updateBand = async (bandId: string, updatedBandData: any) => {
   }
 };
 
+// Delete a band
 export async function deleteBand(bandId: string) {
   const url = new URL(`/bands/${bandId}`, API_URL);
-  // console.log(url);
   const response = await fetch(url, {
     method: "DELETE",
     headers: {
@@ -72,4 +69,21 @@ export async function deleteBand(bandId: string) {
   }
 
   return { message: "Artist deleted successfully" };
+}
+
+// Delete a song
+export async function deleteSong(bandId: string, songId: string) {
+  const url = new URL(`/bands/${bandId}/songs/${songId}`, API_URL);
+  const response = await fetch(url, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error(`Failed to delete song with ID ${songId}`);
+  }
+
+  return { message: "Song deleted successfully" };
 }

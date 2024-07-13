@@ -1,23 +1,23 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAppProvider } from "../../../../context/app-provider";
-
+import { deleteSong } from "../../../../api/bands.api";
 import Modal from "../../modal/Modal";
 import SearchForm from "../../search-form/SearchForm";
-
+import DeleteMusicData from "../../../delete-data/DeleteMusicData";
 import { MdFavorite, MdDeleteForever } from "react-icons/md";
 import { CiHeart, CiEdit } from "react-icons/ci";
-import DeleteMusicData from "../../../delete-data/DeleteMusicData";
-import { SongLibrary } from "../../../../utils/types";
+import { Song, SongLibrary } from "../../../../utils/types";
 
 const Library = () => {
-  const { songLibrary, favorites, setFavorites } = useAppProvider();
+  const { songLibrary, favorites, setFavorites, setSongLibrary } =
+    useAppProvider();
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [searchResults, setSearchResults] = useState<SongLibrary[]>([]);
   const [activeModalId, setActiveModalId] = useState<string | null>(null);
 
   const renderSongs = searchTerm === "" ? songLibrary : searchResults;
 
-  // Todo fix rerendering on suggestion select
+  useEffect(() => {}, []);
   const handleSearch = (value: string) => {
     if (value.trim() === "") {
       setSearchResults([]);
@@ -49,8 +49,24 @@ const Library = () => {
     });
   };
 
+  const handleDelete = (bandId: string, songId: string) => {
+    deleteSong(bandId, songId)
+      .then(() => {
+        console.log("Song deleted successfully");
+        setSongLibrary((currentSongs: Song[]) =>
+          currentSongs.filter((song) => song._id !== songId)
+        );
+        closeModal();
+      })
+      .catch((error) => {
+        console.error("Failed to delete song", error);
+      });
+  };
+
+  console.log(renderSongs, "renderSongs");
+
   return (
-    <div>
+    <div className="">
       <div className="flex justify-between">
         <h3 className="text-2xl text-slate-500 font-bold mb-5">My Music</h3>
         <div className="w-1/2">
@@ -118,7 +134,9 @@ const Library = () => {
                     </button>
                   </td>
                   <td className="text-center">
-                    <button onClick={() => openModal(song._id)}>
+                    <button
+                      onClick={() => console.log("edit song to be implemented")}
+                    >
                       <CiEdit
                         size={20}
                         className="text-fuchsia-500 cursor-pointer"
@@ -137,6 +155,9 @@ const Library = () => {
                         <DeleteMusicData
                           onClose={closeModal}
                           data={song.title}
+                          deleteData={() =>
+                            handleDelete(song.artistId, song._id)
+                          }
                         />
                       </Modal>
                     )}

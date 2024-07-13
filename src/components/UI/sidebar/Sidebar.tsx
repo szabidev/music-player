@@ -1,11 +1,11 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAppProvider } from "../../../context/app-provider";
 import { GiMusicSpell } from "react-icons/gi";
 import { VscLibrary } from "react-icons/vsc";
 import { LiaGuitarSolid } from "react-icons/lia";
 import { MdFavorite } from "react-icons/md";
-import { useNavigate } from "react-router-dom";
 import { routes } from "../../../app-router/routes";
-import { useAppProvider } from "../../../context/app-provider";
 
 const navLinks = [
   { name: "Library", icon: VscLibrary, route: routes.LIBRARY },
