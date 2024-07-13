@@ -35,7 +35,7 @@ git clone https://github.com/szabidev/music-player.git
 
 3. Start the MongoDB service:  
    `sudo systemctl start mongod` for linux  
-   `C:\mongodb\bin\mongod.exe --dbpath "pathToMongoDB\db\data"` for windows  
+   `C:\where_you_installed\mongodb\bin\mongod.exe --dbpath "pathToMongoDB\db\data"` for windows  
    (replace with the correct path for MongoDB's data directory path).  
    Don't forget to set up the node server as well:  
    [BE](https://github.com/szabidev/music-player-api)
