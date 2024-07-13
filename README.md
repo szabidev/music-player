@@ -33,19 +33,22 @@ git clone https://github.com/szabidev/music-player.git
 2. Navigate to project:
    `cd digital-music-library`
 
-3. Start the MongoDB service:
-   `sudo systemctl start mongod` for linux
-   `C:\mongodb\bin\mongod.exe --dbpath "pathToMongoDB\db\data"` for windows (replace with the correct path for MongoDB's data directory path). Don't forget to set up the node server as well:  
+3. Start the MongoDB service:  
+   `sudo systemctl start mongod` for linux  
+   `C:\mongodb\bin\mongod.exe --dbpath "pathToMongoDB\db\data"` for windows  
+   (replace with the correct path for MongoDB's data directory path).  
+   Don't forget to set up the node server as well:  
    [BE](https://github.com/szabidev/music-player-api)
 
 4. Start the deveopment server:
-   ``npm start`
+   `npm start`
 
 ### Features
 
 - List Artists and Albums: Users can view all artists and their albums.
 - Album Details: Clicking on an album displays its description and song list.
 - CRUD Operations: Supports creating, reading, updating, and deleting artists and albums.
+- DELETE single song from album
 - Search with Autocomplete: A search box with autocomplete functionality for quick and easy searching.
 - Library page: A quick list with songs.
 - Favorites: Songs can be favorited in the library, they are listed in the Favorites page
